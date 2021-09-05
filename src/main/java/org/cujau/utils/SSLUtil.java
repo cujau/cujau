@@ -38,6 +38,13 @@ public class SSLUtil {
         }
     }
 
+    public static SSLContext createAllTrustingSslContext()
+            throws KeyManagementException, NoSuchAlgorithmException {
+        SSLContext sc = SSLContext.getInstance( "TLS" );
+        sc.init( null, UNQUESTIONING_TRUST_MANAGER, null );
+        return sc;
+    }
+
     public static TrustManager[] getUnquestioningTrustManagers() {
         return UNQUESTIONING_TRUST_MANAGER;
     }
