@@ -372,6 +372,27 @@ public final class StringUtil {
     }
 
     /**
+     * Truncate the string to the given <tt>len</tt> adding an ellipsis character to the end if the length of the string
+     * is greater than the given <tt>len</tt>. If the string is already less than <tt>len</tt> characters in length, return the string
+     * itself. If the string is greater than <tt>len</tt> characters in length, the string will be truncated to
+     * <tt>len - 1</tt> characters and the ellipsis added so that total length is <tt>len</tt>.
+     *
+     * @param val
+     *         The string to be truncated.
+     * @param len
+     *         The length at which to truncate the string.
+     * @return A new string of length <tt>len</tt> with the last character an ellipsis or the passed in <tt>val</tt>
+     * if it is already less than <tt>len</tt> in length.
+     */
+    public static String ellipsis(String val, int len) {
+        val = trunc(val, len + 1);
+        if (val != null && val.length() == len + 1) {
+            val = val.substring(0, len - 1) + "\u2026";
+        }
+        return val;
+    }
+
+    /**
      * Ensure that the string is not null. If the string is null, return the empty string. Otherwise returns the same string.
      *
      * @param val

@@ -176,7 +176,7 @@ public class StringUtilTest {
         assertTrue( StringUtil.isEmpty( "" ) );
         assertTrue( StringUtil.isEmpty( "   " ) );
     }
-    
+
     @Test
     public void truncTest() {
         assertEquals( "abcd", StringUtil.trunc( "abcdefg", 4 ) );
@@ -185,6 +185,16 @@ public class StringUtilTest {
         assertNull( StringUtil.trunc( null, 4 ) );
         assertEquals( "", StringUtil.trunc( "", 5 ) );
     }
+
+    @Test
+    public void ellipsisTest() {
+        assertEquals( "abc…", StringUtil.ellipsis( "abcdefg", 4 ) );
+        assertEquals( "abcd", StringUtil.ellipsis( "abcd", 4 ) );
+        assertEquals( "abcd", StringUtil.ellipsis( "abcd", 5 ) );
+        assertNull( StringUtil.ellipsis( null, 4 ) );
+        assertEquals( "", StringUtil.ellipsis( "", 5 ) );
+    }
+
 
     @Test
     public void trimToNullTest() {
