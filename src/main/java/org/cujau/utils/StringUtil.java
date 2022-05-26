@@ -3,6 +3,7 @@ package org.cujau.utils;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.Format;
 import java.util.Collection;
 import java.util.Properties;
@@ -18,8 +19,9 @@ public final class StringUtil {
     private static final String DEF_SEP = ",";
     public static final String EMPTY_STR = "";
     public static final String SPACE_STR = " ";
+    public static final String[] EMPTY_STR_ARRAY = new String[0];
     public static final String UTF8_STR = "UTF-8";
-    public static final Charset UTF8 = Charset.forName( UTF8_STR );
+    public static final Charset UTF8 = StandardCharsets.UTF_8;
 
     /**
      * Get the bytes of the given String encoded in UTF-8.
@@ -30,6 +32,10 @@ public final class StringUtil {
      */
     public static byte[] toUtf8( String val ) {
         return val.getBytes( UTF8 );
+    }
+
+    public static String[] asArray(String... vals) {
+        return vals;
     }
 
     public static String toString( double[] ary ) {
@@ -49,7 +55,7 @@ public final class StringUtil {
     }
 
     /**
-     * Convert the given array of objects into it's String representation. The array elements will
+     * Convert the given array of objects into its String representation. The array elements will
      * be separated by a comma (',').
      *
      * @param <E>
@@ -64,7 +70,7 @@ public final class StringUtil {
     }
 
     /**
-     * Convert the given array of objects into it's String representation. The array elements will
+     * Convert the given array of objects into its String representation. The array elements will
      * be separated by the given <tt>separator</tt> string.
      *
      * @param <E>
@@ -108,7 +114,7 @@ public final class StringUtil {
     }
 
     /**
-     * Convert the given collection of objects into it's String representation. The String
+     * Convert the given collection of objects into its String representation. The String
      * representation of an element of the collection will be separated from the next element with
      * the given separator.
      *
@@ -139,7 +145,7 @@ public final class StringUtil {
                 if ( formatter != null ) {
                     buf.append( formatter.format( e ) );
                 } else {
-                    buf.append( e.toString() );
+                    buf.append(e);
                 }
                 buf.append( separator );
             }
@@ -322,7 +328,7 @@ public final class StringUtil {
     }
 
     /**
-     * Compare the two string lexographically ignoring case. A null String is considered to be less
+     * Compare the two string lexicographically ignoring case. A null String is considered to be less
      * than a non-null String.
      *
      * @param s1 First String
