@@ -5,6 +5,7 @@ import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.text.Format;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Properties;
 import java.util.regex.Matcher;
@@ -425,5 +426,27 @@ public final class StringUtil {
             return null;
         }
         return val;
+    }
+
+    /**
+     * Concatenate the 2 arrays of Strings, essentially: [..array1, ...array2]. Returns a new array if both arrays are
+     * non-null, otherwise returns the non-null array or null if both arrays are null.
+     *
+     * @param array1
+     *         The first array.
+     * @param array2
+     *         The 2nd array.
+     * @return A new array with the 2nd array concatenated to the end of the first array.
+     */
+    public static String[] concat(String[] array1, String[] array2) {
+        if (array1 == null) {
+            return array2;
+        }
+        if (array2 == null) {
+            return array1;
+        }
+        String[] result = Arrays.copyOf(array1, array1.length + array2.length);
+        System.arraycopy(array2, 0, result, array1.length, array2.length);
+        return result;
     }
 }

@@ -195,12 +195,23 @@ public class StringUtilTest {
         assertEquals( "", StringUtil.ellipsis( "", 5 ) );
     }
 
-
     @Test
     public void trimToNullTest() {
         assertNull(StringUtil.trimToNull("  "));
         assertNull(StringUtil.trimToNull(""));
         assertNull(StringUtil.trimToNull("\n  \t"));
         assertEquals("abc", StringUtil.trimToNull("  abc  "));
+    }
+
+    @Test
+    public void testConcat() {
+        String[] one = new String[] {"1"};
+        String[] two = new String[] {"2"};
+        String[] result = new String[] {"1", "2"};
+        assertEquals(result, StringUtil.concat(one, two));
+        assertEquals(one, StringUtil.concat(one, null));
+        assertEquals(two, StringUtil.concat(two, null));
+        assertNull(StringUtil.concat(null, null));
+        assertEquals(one, StringUtil.concat(one, StringUtil.EMPTY_STR_ARRAY));
     }
 }
